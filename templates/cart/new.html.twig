@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+	<div class="container">
+
+
+		<h1>Creation d'un  panier</h1>
+
+
+		{# aller sur cette page :https://symfony.com/doc/current/form/form_customization.html #}
+		{# {{form(form)}} #}
+
+		{{ form_start(form) }}
+
+		<div class="form-error"></div>
+
+		<div class="form-group">
+			{{ form_label(form.User) }}
+			{{ form_widget(form.User) }}
+			<div class="form-error">
+				{{ form_errors(form.User) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.ArticleQuantity) }}
+			{{ form_widget(form.ArticleQuantity) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleQuantity) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{form_row(form.submit)}}
+		</div>
+
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{# templates/article/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'article{% endblock %}
+
+{% block content %}
+    {% include 'frag/adminSite.frag.html.twig' %}
+    {#template de la navbar #}
+    <h1>Détails de l'article</h1>
+
+    <p><strong>ID :</strong> {{ article.id }}</p>
+    <p><strong>Référence de l'article :</strong> {{ article.articleRef }}</p>
+    <p><strong>Nom de l'article :</strong> {{ article.articleName }}</p>
+    <p><strong>Images de l'article :</strong> {{ article.articleImages }}</p>
+    <p><strong>Vignettes de l'article :</strong> {{ article.articleThumbnails }}</p>
+    <p><strong>Quantité en stock :</strong> {{ article.articleStockQuantity }}</p>
+    <p><strong>Description :</strong> {{ article.articleDescription }}</p>
+    <p><strong>Prix d'achat :</strong> {{ article.boughtPrice }}</p>
+    <p><strong>Prix de vente HT :</strong> {{ article.sellPriceHT }}</p>
+    <p><strong>Prix de vente TTC :</strong> {{ article.sellPriceTTC }}</p>
+    <p><strong>TVA :</strong> {{ article.TVA }}</p>
+    <p><strong>Détails :</strong> {{ article.details }}</p>
+
+    <!-- Informations de la catégorie -->
+    {% if article.Categories is not null %}
+        <p><strong>ID de la catégorie :</strong> {{ article.Categories.id }}</p>
+        <p><strong>Nom de la catégorie :</strong> {{ article.Categories.name }}</p>
+        <!-- Ajoutez d'autres champs ici en fonction des propriétés de votre entité Category -->
+    {% else %}
+        <p>Pas de catégorie associée à cet article</p>
+    {% endif %}
+
+    <a href="{{ path('app_article.edit', {id: article.id}) }}"> Modifier</a>
+    <a href="{{ path('app_article.delete', {id: article.id}) }}">Supprimer</a>
+{% endblock %}

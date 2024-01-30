@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Bonjour - utilisateur
+{% endblock %}
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+
+	<div
+		class="container mt-4">
+		{# mt-4 : permet de faire un margin #}
+		<h1>
+			Utilisateurs:
+		</h1>
+
+		<a href="{{path('app_user.new')}}" class="btn btn-primary">
+			Créer un utilisateur
+		</a>
+
+		{# source : https://symfony.com/doc/current/session.html#session-intro #}
+		{# regarder ensuite flash message #}
+		{# read and display just one flash message type #}
+		{#{% for message in app.flashes('notice') %}
+									<div class="flash-notice">
+										{{ message }}
+									</div>
+								{% endfor %}#}
+
+		{# source : https://getbootstrap.com/docs/4.0/components/alerts/ #}
+		{# <div class="alert alert-success" role="alert">
+				  This is a success alert—check it out!
+				</div> #}
+
+
+		{# read and display just one flash message type #}
+			{% for message in app.flashes('success') %}
+				<div class=" alert alert-success"> {{ message }}
+			</div>
+		{% endfor %}
+
+
+		<div class="count">
+			<h5>
+				Il y a
+				{{users.getTotalItemCount}}
+				utilisateurs au total
+			</h5>
+
+		</div>
+
+		<table class=" table table-sm table-info ">
+			<thead>
+				<tr>
+					<th scope="col">Numero</th>
+					<th scope="col">Nom De Famille</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">Téléphone</th>
+					{# <th scope="col">Rôle</th> #}
+					<th scope="col">edition</th>
+					<th scope="col">suppression</th>
+					<th scope="col">lire</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr class="table-info">
+						<td class="table-info">{{user.ID}}</td>
+						<td class="table-info">{{user.lastName}}</td>
+						<td class="table-info">{{user.firstName}}</td>
+						<td class="table-info">{{user.phoneNumber}}</td>
+						{# <td class="table-info">{{user.role}}</td> #}
+						<td class="table-info">
+							<a href="{{path('app_user.edit', {'id': user.id})}}" class="btn btn-info">
+								Modifier
+							</a>
+						</td>
+						<td class="table-info">
+							<a href="{{path('app_user.delete', {'id': user.id})}}" class="btn btn-warning" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+								Supprimer
+							</a>
+
+						</td>
+						<td class="table-info">
+							{% if app.request.attributes.get('_route') != 'app_user.show' %}
+								<a href="{{ path('app_user.show', {id: user.id}) }}" class="btn btn-info">lire</a>
+							{% endif %}
+
+
+						</td>
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# display navigation #}
+		<div class="navigation d-flex  justify-content-center p-3 mb-2 bg-info text-white ">
+			{{ knp_pagination_render(users) }}
+
+
+		</div>
+
+
+	</div>
+{% endblock %}

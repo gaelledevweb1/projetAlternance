@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voici  les Addresses{% endblock %}
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+	
+{# <style>     
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style> 
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/gsibaud/Documents/e_commerce_symfonyGaëlle/e_commerce_symfonyGaëlle_projetAlterance/src/Controller/AddressController.php'|file_link(0) }}">src/Controller/AddressController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/gsibaud/Documents/e_commerce_symfonyGaëlle/e_commerce_symfonyGaëlle_projetAlterance/templates/address/index.html.twig'|file_link(0) }}">templates/address/index.html.twig</a></code></li>
+    </ul>
+</div> #}
+
+<div class="container mt-4">
+    {# mt-4 : permet de faire un margin #}
+		<h1>
+			Addresses:
+		</h1>
+		<a href="{{path('app_address.new')}}"class="btn btn-primary">
+			Créer une addresse
+		</a>
+
+		{# source : https://symfony.com/doc/current/session.html#session-intro #}
+		{# regarder ensuite flash message #}
+		{# read and display just one flash message type #}
+		{#{% for message in app.flashes('notice') %}
+							<div class="flash-notice">
+								{{ message }}
+							</div>
+						{% endfor %}#}
+
+		{# source : https://getbootstrap.com/docs/4.0/components/alerts/ #}
+		{# <div class="alert alert-success" role="alert">
+		  This is a success alert—check it out!
+		</div> #}
+
+
+		{# read and display just one flash message type #}
+			{% for message in app.flashes('success') %}
+				<div class=" alert alert-success">
+				 {{ message }}
+				</div>
+			{% endfor %}
+
+        <div class="count">
+           <h5> Il y a  {{addresses.getTotalItemCount}} addresses au total </h5>
+           
+        </div>
+
+		<table class=" table table-sm table-info ">
+			<thead>
+				<tr>
+					<th scope="col">Numero</th>
+					<th scope="col">streetName</th>
+					<th scope="col">StreetNumber</th>
+					<th scope="col">City</th>
+					<th scope="col">ZIPCode</th>
+					<th scope="col">Country</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+					<th scope="col">Lire</th>
+				</tr>
+			</thead>
+
+            
+			<tbody>
+				{% for address in addresses %}
+					<tr class="table-info">
+						<td class="table-info">{{address.ID}}</td>
+						<td class="table-info">{{address.streetName}}</td>
+						<td class="table-info">{{address.StreetNumber}}</td>
+						<td class="table-info">{{address.City}}</td>
+						<td class="table-info">{{address.ZIPCode}}</td>
+                        <td class="table-info">{{address.Country}}</td>
+						<td class="table-info">
+							<a href="{{path('app_address.edit', {'id': address.id})}}" class="btn btn-info">
+								Modifier
+							</a>
+						</td>
+						<td class="table-info">
+							<a href="{{path('app_address.delete', {'id': address.id})}}" class="btn btn-warning" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+								Supprimer
+							</a>
+							
+						</td>
+						<td class="table-info">
+							{% if app.request.attributes.get('_route') != 'app_address.show' %}
+								<a href="{{ path('app_address.show', {id: address.id}) }}" class="btn btn-info">lire</a>
+							{% endif %}
+
+
+						</td>
+
+						
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# display navigation #}
+		<div class="navigation d-flex  justify-content-center p-3 mb-2 bg-info text-white ">
+			{{ knp_pagination_render(addresses) }}
+		</div>
+
+
+	</div>
+{% endblock %}

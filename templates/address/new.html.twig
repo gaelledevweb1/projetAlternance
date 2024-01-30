@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+	<div class="container">
+
+		
+
+
+		<h1>Creation d'une  addresse</h1>
+
+
+		
+
+
+
+
+
+		{# aller sur cette page :https://symfony.com/doc/current/form/form_customization.html #}
+		{# {{form(form)}} #}
+
+			 {{ form_start(form) }}
+														
+												<div class="form-error">
+												</div>
+												
+														<div class="form-group">
+															{{ form_label(form.streetName) }}
+															{{ form_widget(form.streetName) }}
+															<div class="form-error">
+																{{ form_errors(form.streetName) }}
+															</div>
+														</div>
+												
+														<div class="form-group">
+															{{ form_label(form.StreetNumber) }}
+															{{ form_widget(form.StreetNumber) }}
+															<div class="form-error">
+																{{ form_errors(form.StreetNumber) }}
+															</div>
+														</div>
+												
+														<div class="form-group">
+															{{ form_label(form.City) }}
+															{{ form_widget(form.City) }}
+															<div class="form-error">
+																{{ form_errors(form.City) }}
+															</div>
+														</div>
+									
+														<div class="form-group">
+															{{ form_label(form.ZIPCode) }}
+															{{ form_widget(form.ZIPCode) }}
+															<div class="form-error">
+																{{ form_errors(form.ZIPCode) }}
+															</div>
+														</div>
+
+                                                        <div class="form-group">
+															{{ form_label(form.Country) }}
+															{{ form_widget(form.Country) }}
+															<div class="form-error">
+																{{ form_errors(form.Country) }}
+															</div>
+														</div>
+														
+														<div class="form-group">
+															{{form_row(form.submit)}}
+														</div>
+														
+									
+			{{ form_end(form) }} 
+	</div>  
+{% endblock %}

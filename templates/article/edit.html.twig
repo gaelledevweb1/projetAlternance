@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+
+	<div class="container">
+
+
+		<h1>Modification d'un  article</h1>
+
+
+		{# aller sur cette page :https://symfony.com/doc/current/form/form_customization.html #}
+		{# {{form(form)}} #}
+
+		{{ form_start(form) }}
+
+		<div class="form-error"></div>
+
+		<div class="form-group">
+			{{ form_label(form.ArticleRef) }}
+			{{ form_widget(form.ArticleRef) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleRef) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.ArticleName) }}
+			{{ form_widget(form.ArticleName) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleName) }}
+			</div>
+		</div>
+
+        <div class="form-group">
+			{{ form_label(form.ArticleImages) }}
+			{{ form_widget(form.ArticleImages) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleImages) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.ArticleThumbnails) }}
+			{{ form_widget(form.ArticleThumbnails) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleThumbnails) }}
+			</div>
+		</div>
+
+        <div class="form-group">
+			{{ form_label(form.ArticleStockQuantity) }}
+			{{ form_widget(form.ArticleStockQuantity) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleStockQuantity) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.ArticleDescription) }}
+			{{ form_widget(form.ArticleDescription) }}
+			<div class="form-error">
+				{{ form_errors(form.ArticleDescription) }}
+			</div>
+		</div>
+
+        <div class="form-group">
+			{{ form_label(form.BoughtPrice) }}
+			{{ form_widget(form.BoughtPrice) }}
+			<div class="form-error">
+				{{ form_errors(form.BoughtPrice) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.SellpriceHT) }}
+			{{ form_widget(form.SellpriceHT) }}
+			<div class="form-error">
+				{{ form_errors(form.SellpriceHT) }}
+			</div>
+		</div>
+
+        <div class="form-group">
+			{{ form_label(form.SellPriceTTC) }}
+			{{ form_widget(form.SellPriceTTC) }}
+			<div class="form-error">
+				{{ form_errors(form.SellPriceTTC) }}
+			</div>
+		</div>
+
+        <div class="form-group">
+			{{ form_label(form.TVA) }}
+			{{ form_widget(form.TVA) }}
+			<div class="form-error">
+				{{ form_errors(form.TVA) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{ form_label(form.Details) }}
+			{{ form_widget(form.Details) }}
+			<div class="form-error">
+				{{ form_errors(form.Details) }}
+			</div>
+		</div>
+
+		<div class="form-group">
+			{{form_row(form.submit)}}
+		</div>
+
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

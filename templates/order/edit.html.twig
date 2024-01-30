@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+	
+	<div class="container">
+
+
+		<h1>Modification d'une commande</h1>
+
+
+		{# aller sur cette page :https://symfony.com/doc/current/form/form_customization.html #}
+		{# {{form(form)}} #}
+
+		{{ form_start(form) }}
+
+		
+		<div class="form-group">
+			{{ form_label(form.OrderDate) }}
+			{{ form_widget(form.OrderDate) }}
+			<div class="form-error">
+				{{ form_errors(form.OrderDate) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.Paid) }}
+			{{ form_widget(form.Paid) }}
+			<div class="form-error">
+				{{ form_errors(form.Paid) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.Status) }}
+			{{ form_widget(form.Status) }}
+			<div class="form-error">
+				{{ form_errors(form.Status) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.Delivered) }}
+			{{ form_widget(form.Delivered) }}
+			<div class="form-error">
+				{{ form_errors(form.Delivered) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.DeliveryDate) }}
+			{{ form_widget(form.DeliveryDate) }}
+			<div class="form-error">
+				{{ form_errors(form.DeliveryDate) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{form_row(form.submit)}}
+		</div>
+
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{# templates/category/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la catégorie{% endblock %}
+
+{% block content %}
+    {% include 'frag/adminSite.frag.html.twig' %}
+    {#template de la navbar #}
+    <h1>Détails de la catégorie</h1>
+
+    <p><strong>ID :</strong> {{ category.id }}</p>
+    <p><strong>Nom de la catégorie :</strong> {{ category.nameCategory }}</p>
+    <p><strong>Image de la catégorie :</strong> <img src="{{ category.categoryImages }}" alt="{{ category.nameCategory }}"></p>
+
+    <a href="{{ path('app_category.edit', {id: category.id}) }}"> Modifier</a>
+    <a href="{{ path('app_category.delete', {id: category.id}) }}">Supprimer</a>
+{% endblock %}

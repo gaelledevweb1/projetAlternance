@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdminSite
+{% endblock %}
+
+{% block content %}
+	<style></style>
+	<h1>Bienvenue sur le site admin</h1>
+
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+
+	<div class="colCenter">
+
+		
+			
+				<h2>
+					<a href="{{ path('app_user') }}">Utilisateurs</a>
+				</h2>
+				
+			
+		
+
+
+		{# <div class="ctn rowCenter">
+					<h2>
+						<a href="{{ path('app_user') }}">Utilisateurs</a>
+					</h2>
+					<a href="{{path('app_user.edit', {'id': user.id})}}" class="btn btn-info">
+										Modifier
+									</a>
+				</div> #}
+		<div class="ctn rowCenter"></div>
+		<div class="ctn rowCenter"></div>
+		<div class="ctn rowCenter"></div>
+		<div class="ctn rowCenter"></div>
+		<div class="ctn rowCenter"></div>
+		<div class="ctn rowCenter"></div>
+		<div class="ctn rowCenter"></div>
+
+
+		<h2>
+			<a href="{{ path('app_category') }}">Categories</a>
+
+		</h2>
+		<h2>
+			<a href="{{ path('app_article') }}">Articles</a>
+
+		</h2>
+		<h2>
+
+			<a href="{{ path('app_address') }}">Adresses</a>
+		</h2>
+
+		<h2>
+
+			<a href="{{ path('app_cart') }}">Panier</a>
+		</h2>
+
+		<h2>
+
+			<a href="{{ path('app_order') }}">Commandes</a>
+		</h2>
+
+		<h2>
+
+			<a href="{{ path('app_credential') }}">Credential</a>
+		</h2>
+
+		<h2>
+
+			<a href="{{ path('app_paiement') }}">Paiement</a>
+
+		</div>
+
+
+	{% endblock %}

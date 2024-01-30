@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block content %}
+{#<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/gsibaud/Documents/e_commerce_symfonyGaëlle/e_commerce_symfonyGaëlle_projetAlterance/src/Controller/PanierController.php'|file_link(0) }}">src/Controller/PanierController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/gsibaud/Documents/e_commerce_symfonyGaëlle/e_commerce_symfonyGaëlle_projetAlterance/templates/panier/index.html.twig'|file_link(0) }}">templates/panier/index.html.twig</a></code></li>
+    </ul>
+</div>#}
+
+<div class="container mt-4">
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+
+    {# mt-4 : permet de faire un margin #}
+		<h1>
+			paiements:
+		</h1>
+
+		<a href="{{path('app_paiement.new')}}"class="btn btn-primary">
+			Créer un paiement
+		</a>
+
+		{# source : https://symfony.com/doc/current/session.html#session-intro #}
+		{# regarder ensuite flash message #}
+		{# read and display just one flash message type #}
+		{#{% for message in app.flashes('notice') %}
+							<div class="flash-notice">
+								{{ message }}
+							</div>
+						{% endfor %}#}
+
+		{# source : https://getbootstrap.com/docs/4.0/components/alerts/ #}
+		{# <div class="alert alert-success" role="alert">
+		  This is a success alert—check it out!
+		</div> #}
+
+
+		{# read and display just one flash message type #}
+			{% for message in app.flashes('success') %}
+				<div class=" alert alert-success">
+				 {{ message }}
+				</div>
+			{% endfor %}
+
+        <div class="count">
+           <h5> Il y a  {{paiements.getTotalItemCount}} paiements au total </h5>
+           
+        </div>
+
+		<table class=" table table-sm table-info ">
+			<thead>
+				<tr>
+					<th scope="col">Numero</th>
+					<th scope="col">BankName</th>
+                    <th scope="col">CardName</th>
+                    <th scope="col">CardNumber</th>
+                    <th scope="col">CardNetwork</th>
+                    <th scope="col">CardHoldername</th>
+                    <th scope="col">ExpirationDate</th>
+					<th scope="col">CVCCode</th>
+					<th scope="col">SecurityCard</th>
+					<th scope="col">Currency</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+					<th scope="col">Lire</th>
+
+					
+				</tr>
+			</thead>
+ 
+
+            
+			<tbody>
+				{% for paiement in paiements %}
+					<tr class="table-info">
+						<td class="table-info">{{paiement.ID}}</td>
+						<td class="table-info">{{paiement.BankName}}</td>
+                        <td class="table-info">{{paiement.CardName}}</td>
+                        <td class="table-info">{{paiement.CardNumber}}</td>
+                        <td class="table-info">{{paiement.CardNetwork}}</td>
+                        <td class="table-info">{{paiement.CardHoldername}}</td>
+						<td class="table-info">{{paiement.ExpirationDate|date('d-m-Y')}}</td>
+						<td class="table-info">{{paiement.CVCCode}}</td>
+						<td class="table-info">{{paiement.SecurityCard}}</td>
+						<td class="table-info">{{paiement.Currency}}</td>
+						<td class="table-info">
+							<a href="{{path('app_paiement.edit', {'id': paiement.id})}}" class="btn btn-info">
+								Modifier
+							</a>
+						</td>
+						<td class="table-info">
+							<a href="{{path('app_paiement.delete', {'id': paiement.id})}}" class="btn btn-warning" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+								Supprimer
+							</a>
+							
+						</td>
+						<td class="table-info">
+							{% if app.request.attributes.get('_route') != 'app_paiement.show' %}
+								<a href="{{ path('app_paiement.show', {id: paiement.id}) }}" class="btn btn-info">lire</a>
+							{% endif %}
+
+
+						</td>
+	
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# display navigation #}
+		<div class="navigation d-flex  justify-content-center p-3 mb-2 bg-info text-white ">
+			{{ knp_pagination_render(paiements) }}
+		</div>
+
+
+	</div>
+{% endblock %}

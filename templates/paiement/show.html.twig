@@ -1,0 +1,38 @@
+{# templates/paiement/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du paiement{% endblock %}
+
+{% block content %}
+    {% include 'frag/adminSite.frag.html.twig' %}
+    {#template de la navbar #}
+    <h1>Détails du paiement</h1>
+
+    <p><strong>ID :</strong> {{ paiement.getId }}</p>
+    <p><strong>Nom de la banque :</strong> {{ paiement.getBankName }}</p>
+    <p><strong>Nom de la carte :</strong> {{ paiement.getCardName }}</p>
+    <p><strong>Numéro de la carte :</strong> {{ paiement.getCardNumber }}</p>
+    <p><strong>Réseau de la carte :</strong> {{ paiement.getCardNetwork }}</p>
+    <p><strong>Nom du titulaire de la carte :</strong> {{ paiement.getCardHoldername }}</p>
+    <p><strong>Date d'expiration :</strong> {{ paiement.getExpirationDate|date('Y-m-d') }}</p>
+    <p><strong>Code CVC :</strong> {{ paiement.getCVCCode }}</p>
+    <p><strong>Carte de sécurité :</strong> {{ paiement.getSecurityCard }}</p>
+    <p><strong>Devise :</strong> {{ paiement.getCurrency }}</p>
+
+    <!-- Informations de l'utilisateur et du panier associés à ce paiement -->
+    {% if paiement.getUser is not null %}
+        <p><strong>ID de l'utilisateur :</strong> {{ paiement.getUser.getId }}</p>
+    {% else %}
+        <p>Aucun utilisateur associé à ce paiement</p>
+    {% endif %}
+
+    {% if paiement.getCart is not null %}
+        <p><strong>ID du panier :</strong> {{ paiement.getCart.getId }}</p>
+    {% else %}
+        <p>Aucun panier associé à ce paiement</p>
+    {% endif %}
+
+    <a href="{{ path('app_paiement.edit', {id: paiement.getId}) }}"> Modifier</a>
+    <a href="{{ path('app_paiement.delete', {id: paiement.getId}) }}">Supprimer</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{# templates/address/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'adresse{% endblock %}
+
+{% block content %}
+    {% include 'frag/adminSite.frag.html.twig' %}
+    {#template de la navbar #}
+    <h1>Détails de l'adresse</h1>
+
+    <p><strong>ID :</strong> {{ address.id }}</p>
+    <p><strong>Nom de la rue :</strong> {{ address.streetName }}</p>
+    <p><strong>Numéro de la rue :</strong> {{ address.streetNumber }}</p>
+    <p><strong>Ville :</strong> {{ address.city }}</p>
+    <p><strong>Code postal :</strong> {{ address.ZIPCode }}</p>
+    <p><strong>Pays :</strong> {{ address.country }}</p>
+
+    <!-- Informations de l'utilisateur -->
+    {% if address.user is not null %}
+        <p><strong>ID de l'utilisateur :</strong> {{ address.user.id }}</p>
+        <p><strong>Nom de l'utilisateur :</strong> {{ address.user.username }}</p>
+        <!-- Ajoutez d'autres champs ici en fonction des propriétés de votre entité User -->
+    {% else %}
+        <p>Pas d'utilisateur associé à cette adresse</p>
+    {% endif %}
+
+    <a href="{{ path('app_address.edit', {id: address.id}) }}"> Modifier</a>
+    <a href="{{ path('app_address.delete', {id: address.id}) }}">Supprimer</a>
+{% endblock %}

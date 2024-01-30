@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+	
+	<div class="container">
+
+
+		<h1>Modification d'un  paiement</h1>
+
+
+		{# aller sur cette page :https://symfony.com/doc/current/form/form_customization.html #}
+		{# {{form(form)}} #}
+
+		{{ form_start(form) }}
+
+		
+		<div class="form-group">
+			{{ form_label(form.BankName) }}
+			{{ form_widget(form.BankName) }}
+			<div class="form-error">
+				{{ form_errors(form.BankName) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{ form_label(form.CardName) }}
+			{{ form_widget(form.CardName) }}
+			<div class="form-error">
+				{{ form_errors(form.CardName) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.CardNumber) }}
+			{{ form_widget(form.CardNumber) }}
+			<div class="form-error">
+				{{ form_errors(form.CardNumber) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.CardNetwork) }}
+			{{ form_widget(form.CardNetwork) }}
+			<div class="form-error">
+				{{ form_errors(form.CardNetwork) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.CardHoldername) }}
+			{{ form_widget(form.CardHoldername) }}
+			<div class="form-error">
+				{{ form_errors(form.CardHoldername) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.ExpirationDate) }}
+			{{ form_widget(form.ExpirationDate) }}
+			<div class="form-error">
+				{{ form_errors(form.ExpirationDate) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.CVCCode) }}
+			{{ form_widget(form.CVCCode) }}
+			<div class="form-error">
+				{{ form_errors(form.CVCCode) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.SecurityCard) }}
+			{{ form_widget(form.SecurityCard) }}
+			<div class="form-error">
+				{{ form_errors(form.SecurityCard) }}
+			</div>
+		</div>
+        <div class="form-group">
+			{{ form_label(form.Currency) }}
+			{{ form_widget(form.Currency) }}
+			<div class="form-error">
+				{{ form_errors(form.Currency) }}
+			</div>
+		</div>
+		<div class="form-group">
+			{{form_row(form.submit)}}
+		</div>
+
+
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

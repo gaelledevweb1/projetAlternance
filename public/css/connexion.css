@@ -1,0 +1,13 @@
+.form-control{
+    width: 50rem;
+}
+.btn-primary{
+    width: 30rem;
+}
+.colCenter{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}

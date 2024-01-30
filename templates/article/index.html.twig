@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block content %}
+	{% include 'frag/adminSite.frag.html.twig' %}
+	{#template de la navbar #}
+
+<div class="container mt-4">
+    {# mt-4 : permet de faire un margin #}
+		<h1>
+			Articles:
+		</h1>
+<a href="{{path('app_article.new')}}"class="btn btn-primary">
+			Créer un article
+		</a>
+
+		{# source : https://symfony.com/doc/current/session.html#session-intro #}
+		{# regarder ensuite flash message #}
+		{# read and display just one flash message type #}
+		{#{% for message in app.flashes('notice') %}
+							<div class="flash-notice">
+								{{ message }}
+							</div>
+						{% endfor %}#}
+
+		{# source : https://getbootstrap.com/docs/4.0/components/alerts/ #}
+		{# <div class="alert alert-success" role="alert">
+		  This is a success alert—check it out!
+		</div> #}
+
+
+		{# read and display just one flash message type #}
+			{% for message in app.flashes('success') %}
+				<div class=" alert alert-success">
+				 {{ message }}
+				</div>
+			{% endfor %}
+
+
+        <div class="count">
+           <h5> Il y a  {{articles.getTotalItemCount}} articles au total </h5>
+           
+        </div>
+
+		<table class=" table table-sm table-info ">
+			<thead>
+				<tr>
+					<th scope="col">Numero</th>
+					<th scope="col">ArticleRef</th>
+					<th scope="col">ArticleName</th>
+					<th scope="col">ArticleImages</th>
+					<th scope="col">ArticleThumbnails</th>
+					<th scope="col">ArticleStockQuantity</th>
+                    <th scope="col">ArticleDescription</th>
+                    <th scope="col">BoughtPrice</th>
+                    <th scope="col">SellpriceHT</th>
+                    <th scope="col">SellPriceTTC</th>
+                    <th scope="col">TVA</th>
+                    <th scope="col">Details</th>
+					<th scope="col">Modifier</th>
+					<th scope="col">Supprimer</th>
+					<th scope="col">Lire</th>
+					
+
+                    {# <th scope="col">Cart</th> #}
+
+				</tr>
+			</thead>
+
+             
+			<tbody>
+				{% for article in articles %}
+					<tr class="table-info">
+						<td class="table-info">{{article.ID}}</td>
+						<td class="table-info">{{article.ArticleRef}}</td>
+						<td class="table-info">{{article.ArticleName}}</td>
+						<td class="table-info">{{article.ArticleImages}}</td>
+						<td class="table-info">{{article.ArticleThumbnails}}</td>
+                        <td class="table-info">{{article.ArticleStockQuantity}}</td>
+                        <td class="table-info">{{article.ArticleDescription}}</td>
+                        <td class="table-info">{{article.BoughtPrice}}</td>
+                        <td class="table-info">{{article.SellpriceHT}}</td>
+                        <td class="table-info">{{article.SellPriceTTC}}</td>
+                        <td class="table-info">{{article.TVA}}</td>
+                        <td class="table-info">{{article.Details}}</td>
+                        {# <td class="table-info">{{article.Cart}}</td> #}
+						<td class="table-info">
+							<a href="{{path('app_article.edit', {'id': article.id})}}" class="btn btn-info">
+								Modifier
+							</a>
+						</td>
+						<td class="table-info">
+							<a href="{{path('app_article.delete', {'id': article.id})}}" class="btn btn-warning" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+								Supprimer
+							</a>
+							
+						</td>
+						<td class="table-info">
+							{% if app.request.attributes.get('_route') != 'app_article.show' %}
+								<a href="{{ path('app_article.show', {id: article.id}) }}" class="btn btn-info">lire</a>
+							{% endif %}
+
+
+						</td>
+
+						
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		{# display navigation #}
+		<div class="navigation d-flex  justify-content-center p-3 mb-2 bg-info text-white ">
+			{{ knp_pagination_render(articles) }}
+		</div>
+
+
+	</div>
+{% endblock %}

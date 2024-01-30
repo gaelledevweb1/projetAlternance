@@ -1,0 +1,22 @@
+{# templates/order/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la commande{% endblock %}
+
+{% block content %}
+    {% include 'frag/adminSite.frag.html.twig' %}
+    {#template de la navbar #}
+    <h1>Détails de la commande</h1>
+
+    <p><strong>ID :</strong> {{ order.id }}</p>
+    <p><strong>Date de la commande :</strong> {{ order.orderDate|date('Y-m-d H:i:s') }}</p>
+    <p><strong>Payé :</strong> {{ order.paid ? 'Oui' : 'Non' }}</p>
+    <p><strong>Statut :</strong> {{ order.status }}</p>
+    <p><strong>Livré :</strong> {{ order.delivered ? 'Oui' : 'Non' }}</p>
+    <p><strong>Date de livraison :</strong> {{ order.deliveryDate|date('Y-m-d H:i:s') }}</p>
+    <p><strong>Informations de livraison :</strong> {{ order.deliveryInfo }}</p>
+
+    <a href="{{ path('app_order.edit', {id: order.id}) }}"> Modifier</a>
+    <a href="{{ path('app_order.delete', {id: order.id}) }}">Supprimer</a>
+{% endblock %}

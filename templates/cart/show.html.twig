@@ -1,0 +1,39 @@
+{# templates/cart/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du panier{% endblock %}
+
+{% block content %}
+    {% include 'frag/adminSite.frag.html.twig' %}
+    {#template de la navbar #}
+    <h1>Détails du panier</h1>
+
+    <p><strong>ID :</strong> {{ cart.id }}</p>
+    <p><strong>Quantité d'articles :</strong> {{ cart.articleQuantity }}</p>
+
+    <!-- Informations de l'utilisateur -->
+    {% if cart.user is not null %}
+        <p><strong>ID de l'utilisateur :</strong> {{ cart.user.id }}</p>
+        <p><strong>Nom de l'utilisateur :</strong> {{ cart.user.lastName }}</p>
+        <p><strong>Prénom de l'utilisateur :</strong> {{ cart.user.firstName }}</p>
+        <!-- Ajoutez d'autres champs ici en fonction des propriétés de votre entité User -->
+    {% else %}
+        <p>Pas d'utilisateur associé à ce panier</p>
+    {% endif %}
+
+    <!-- Informations des articles -->
+    {% if cart.articles is not empty %}
+        <h2>Articles :</h2>
+        {% for article in cart.articles %}
+            <p><strong>ID de l'article :</strong> {{ article.id }}</p>
+            <p><strong>Nom de l'article :</strong> {{ article.articleName }}</p>
+            <!-- Ajoutez d'autres champs ici en fonction des propriétés de votre entité Article -->
+        {% endfor %}
+    {% else %}
+        <p>Pas d'articles dans ce panier</p>
+    {% endif %}
+
+    <a href="{{ path('app_cart.edit', {id: cart.id}) }}"> Modifier</a>
+    <a href="{{ path('app_cart.delete', {id: cart.id}) }}">Supprimer</a>
+{% endblock %}
